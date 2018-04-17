@@ -1,0 +1,41 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Name Game";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Welcome to Name Game!</h2>
+            <label>There are several game types to choose from. These are listed below along with a brief description about them.</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h4 style="cursor: pointer;" onclick="window.location='/Standard'">Standard</h4>
+            <p>5 faces are displayed and name. Choose the correct face associated with that name.</p>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-12" >
+            <h4 style="cursor: pointer;" onclick="window.location='/TeamMode'">Team Mode</h4>
+            <p>Standard Mode except, every person shown has a Job Title and Currently Works at WillowTree.</p>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <h4 style="cursor: pointer;" onclick="window.location='/MatMode'">Mat(t) Mode</h4>
+            <p>There are several different Mat(t)s that work at WillowTree. They can get confusing.</p>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <h4 style="cursor: pointer;" onclick="window.location='/ReverseMode'">Reverse Mode</h4>
+            <p>Instead of 5 pictures and a name, you get 5 names and a picture.</p>
+        </div>
+    </div>
+</div>

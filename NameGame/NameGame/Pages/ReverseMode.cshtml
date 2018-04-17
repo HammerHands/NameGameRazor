@@ -1,0 +1,80 @@
+﻿@page
+@model NameGame.Pages.StandardModel
+@{
+    ViewData["Title"] = "Reverse Mode";
+}
+
+<script>
+    function guess(index) {
+        if (index == @Model.correctIndex) {
+            document.getElementById("correctName").innerHTML = "@Model.matchThisName";
+            document.getElementById("status" + index).src = "/images/correct.png";
+        }
+        else {
+            switch (index) {
+                case 0:
+                    document.getElementById("profile" + index).src = "@Model.DisplayedProfiles[0].Headshot.Url";
+                    document.getElementById("status" + index).src = "/images/incorrect.png";
+                    break;
+                case 1:
+                    document.getElementById("profile" + index).src = "@Model.DisplayedProfiles[1].Headshot.Url";
+                    document.getElementById("status" + index).src = "/images/incorrect.png";
+                    break;
+                case 2:
+                    document.getElementById("profile" + index).src = "@Model.DisplayedProfiles[2].Headshot.Url";
+                    document.getElementById("status" + index).src = "/images/incorrect.png";
+                    break;
+                case 3:
+                    document.getElementById("profile" + index).src = "@Model.DisplayedProfiles[3].Headshot.Url";
+                    document.getElementById("status" + index).src = "/images/incorrect.png";
+                    break;
+                case 4:
+                    document.getElementById("profile" + index).src = "@Model.DisplayedProfiles[4].Headshot.Url";
+                    document.getElementById("status" + index).src = "/images/incorrect.png";
+                    break;
+            }
+        }
+
+    }
+</script>
+
+<h2>Name Game - Reverse</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 center-block">
+            <h3 id="correctName" class="text-center"></h3>
+            <img src="@Model.DisplayedProfiles[@Model.correctIndex].Headshot.Url" id="ProfilePicToMatch" class="img-responsive center-block"/>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-offset-1" />
+        <div class="col-sm-2">
+            <button class="btn btn-primary" onclick="guess(0)" id="option0">@Model.DisplayedProfiles[0].FullName</button>
+            <img src="" id="profile0" class="img-responsive"/>
+            <img src="" id="status0" class="img-responsive" />
+        </div>
+        <div class="col-sm-2">
+            <button class="btn btn-primary" onclick="guess(1)" id="option1">@Model.DisplayedProfiles[1].FullName</button>
+            <img src="" id="profile1" class="img-responsive" />
+            <img src="" id="status1" class="img-responsive" />
+        </div>
+        <div class="col-sm-2">
+            <button class="btn btn-primary" onclick="guess(2)" id="option2">@Model.DisplayedProfiles[2].FullName</button>
+            <img src="" id="profile2" class="img-responsive" />
+            <img src="" id="status2" class="img-responsive" />
+        </div>
+        <div class="col-sm-2">
+            <button class="btn btn-primary" onclick="guess(3)" id="option3">@Model.DisplayedProfiles[3].FullName</button>
+            <img src="" id="profile3" class="img-responsive" />
+            <img src="" id="status3" class="img-responsive" />
+        </div>
+        <div class="col-sm-2">
+            <button class="btn btn-primary" onclick="guess(4)" id="option4">@Model.DisplayedProfiles[4].FullName</button>
+            <img src="" id="profile4" class="img-responsive" />
+            <img src="" id="status4" class="img-responsive" />
+        </div>
+    </div>
+</div>
+
