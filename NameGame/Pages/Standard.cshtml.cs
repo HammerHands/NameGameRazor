@@ -11,14 +11,14 @@ namespace NameGame.Pages
 {
     public class StandardModel : PageModel
     {
-        public Profile[] ProfileList;
-        private NameGameService GameService;
-        public Profile[] DisplayedProfiles { get; set; }
-        public string matchThisName { get; set; }
-        public int correctIndex { get; set; }
+        public Question StandardQuestion { get; set; }
         public async Task OnGetAsync()
         {
-            GameService = new NameGameService();
+            StandardQuestion = new Question();
+            await StandardQuestion.CreateQuestion("standard");
+
+            //Old Algorithm moved to QuestionFactory
+         /*   GameService = new NameGameService();
             try
             {
                 ProfileList = await GameService.GetProfiles();
@@ -49,6 +49,7 @@ namespace NameGame.Pages
             int correct = displayedRandomIndex.Next(DisplayedProfiles.Length);
             correctIndex = correct;
             matchThisName = DisplayedProfiles[correctIndex].FullName;
+            */
         }
     }
 }
