@@ -10,7 +10,6 @@ namespace NameGame.Services
     {
         public static async Task CreateQuestion(this Question question, string questionType)
         {
-            int tryCount = 0;
             NameGameService gameService = new NameGameService();
             Profile[] allProfiles = await gameService.GetProfiles();
 
@@ -34,7 +33,8 @@ namespace NameGame.Services
                     }
                 }
                 //Randomly Select Correct Profile
-                question.correctProfile = question.DisplayedProfiles[numGenerator.Next(question.DisplayedProfiles.Length)];
+                question.CorrectIndex = numGenerator.Next(question.DisplayedProfiles.Length);
+                question.correctProfile = question.DisplayedProfiles[question.CorrectIndex];
             }
             else if(questionType.Equals("Team"))
             {
@@ -51,7 +51,8 @@ namespace NameGame.Services
                     }
                 }
                 //Randomly Select Correct Profile
-                question.correctProfile = question.DisplayedProfiles[numGenerator.Next(question.DisplayedProfiles.Length)];
+                question.CorrectIndex = numGenerator.Next(question.DisplayedProfiles.Length);
+                question.correctProfile = question.DisplayedProfiles[question.CorrectIndex];
             }
             else if(questionType.Equals("Mat"))
             {
@@ -68,7 +69,8 @@ namespace NameGame.Services
                     }
                 }
                 //Randomly Select Correct Profile
-                question.correctProfile = question.DisplayedProfiles[numGenerator.Next(question.DisplayedProfiles.Length)];
+                question.CorrectIndex = numGenerator.Next(question.DisplayedProfiles.Length);
+                question.correctProfile = question.DisplayedProfiles[question.CorrectIndex];
             }
         }
     }

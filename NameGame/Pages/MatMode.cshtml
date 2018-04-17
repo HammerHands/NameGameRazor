@@ -4,72 +4,101 @@
     ViewData["Title"] = "Mat(t) Mode";
 }
 
+<script src="~/lib/jquery/dist/jquery.js"></script>
 <script>
     function guess(index) {
-        if (index == @Model.correctIndex) {
-            document.getElementById("option" + index + "Text").innerHTML = "@Model.matchThisName";
+        if (index == @Model.MatQuestion.CorrectIndex) {
+            document.getElementById("option" + index + "Text").innerHTML = "@Model.MatQuestion.correctProfile.FullName";
             document.getElementById("status" + index).src = "/images/correct.png";
         }
         else {
+            //Can't pass javascript variables to C# injection so a switch is needed to determine position to show name.
             switch (index) {
                 case 0:
-                    document.getElementById("option" + index + "Text").innerHTML = "@Model.DisplayedProfiles[0].FullName";
+                    document.getElementById("option" + index + "Text").innerHTML = "@Model.MatQuestion.DisplayedProfiles[0].FullName";
                     document.getElementById("status" + index).src = "/images/incorrect.png";
                     break;
                 case 1:
-                    document.getElementById("option" + index + "Text").innerHTML = "@Model.DisplayedProfiles[1].FullName";
+                    document.getElementById("option" + index + "Text").innerHTML = "@Model.MatQuestion.DisplayedProfiles[1].FullName";
                     document.getElementById("status" + index).src = "/images/incorrect.png";
                     break;
                 case 2:
-                    document.getElementById("option" + index + "Text").innerHTML = "@Model.DisplayedProfiles[2].FullName";
+                    document.getElementById("option" + index + "Text").innerHTML = "@Model.MatQuestion.DisplayedProfiles[2].FullName";
                     document.getElementById("status" + index).src = "/images/incorrect.png";
                     break;
                 case 3:
-                    document.getElementById("option" + index + "Text").innerHTML = "@Model.DisplayedProfiles[3].FullName";
+                    document.getElementById("option" + index + "Text").innerHTML = "@Model.MatQuestion.DisplayedProfiles[3].FullName";
                     document.getElementById("status" + index).src = "/images/incorrect.png";
                     break;
                 case 4:
-                    document.getElementById("option" + index + "Text").innerHTML = "@Model.DisplayedProfiles[4].FullName";
+                    document.getElementById("option" + index + "Text").innerHTML = "@Model.MatQuestion.DisplayedProfiles[4].FullName";
                     document.getElementById("status" + index).src = "/images/incorrect.png";
                     break;
             }
         }
-
     }
+
+    $(window).keypress(function (key) {
+        switch (key.keyCode) {
+            case 49:
+                guess(0);
+                break;
+            case 50:
+                guess(1);
+                break;
+            case 51:
+                guess(2);
+                break;
+            case 52:
+                guess(3);
+                break;
+            case 53:
+                guess(4);
+                break;
+            default:
+                //do nothing
+                break;
+        }
+    });
 </script>
 
-<h2>Name Game - Mat(t) Mode</h2>
+<h2>Name Game - Standard</h2>
 
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h3 id="matchThisName" style="text-align:center;">@Model.matchThisName</h3>
+            <h3 id="matchThisName" style="text-align:center;">@Model.MatQuestion.correctProfile.FullName </h3>
         </div>
     </div>
     <div class="row">
         <div class="col-md-offset-1" />
         <div class="col-sm-2">
-            <img src="@Model.DisplayedProfiles[0].Headshot.Url" id="option0" onclick="guess(0)" class="img-responsive" />
+            <h5 style="text-align:center;">1</h5>
+            <img src="@Model.MatQuestion.DisplayedProfiles[0].Headshot.Url" id="option0" onclick="guess(0)" class="img-responsive" />
             <p id="option0Text"></p>
             <img src="" id="status0" class="img-responsive" />
         </div>
         <div class="col-sm-2">
-            <img src="@Model.DisplayedProfiles[1].Headshot.Url" id="option1" onclick="guess(1)" class="img-responsive" />
+            <h5 style="text-align:center;">2</h5>
+            <img src="@Model.MatQuestion.DisplayedProfiles[1].Headshot.Url" id="option1" onclick="guess(1)" class="img-responsive" />
             <p id="option1Text"></p>
             <img src="" id="status1" class="img-responsive" />
         </div>
         <div class="col-sm-2">
-            <img src="@Model.DisplayedProfiles[2].Headshot.Url" id="option2" onclick="guess(2)" class="img-responsive" />
+            <h5 style="text-align:center;">3</h5>
+            <img src="@Model.MatQuestion.DisplayedProfiles[2].Headshot.Url" id="option2" onclick="guess(2)" class="img-responsive" />
             <p id="option2Text"></p>
             <img src="" id="status2" class="img-responsive" />
         </div>
         <div class="col-sm-2">
-            <img src="@Model.DisplayedProfiles[3].Headshot.Url" id="option3" onclick="guess(3)" class="img-responsive" />
+            <h5 style="text-align:center;">4</h5>
+            <img src="@Model.MatQuestion.DisplayedProfiles[3].Headshot.Url" id="option3" onclick="guess(3)" class="img-responsive" />
             <p id="option3Text"></p>
             <img src="" id="status3" class="img-responsive" />
         </div>
         <div class="col-sm-2">
-            <img src="@Model.DisplayedProfiles[4].Headshot.Url" id="option4" onclick="guess(4)" class="img-responsive" />
+            <h5 style="text-align:center;">5</h5>
+            <img src="@Model.MatQuestion.DisplayedProfiles[4].Headshot.Url" id="option4" onclick="guess(4)" class="img-responsive" />
             <p id="option4Text"></p>
             <img src="" id="status4" class="img-responsive" />
         </div>
