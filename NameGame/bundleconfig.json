@@ -20,5 +20,11 @@
     "inputFiles": [
       "wwwroot/js/keyShortcuts.js"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/js/sessionStart.min.js",
+    "inputFiles": [
+      "wwwroot/js/sessionStart.js"
+    ]
   }
 ]

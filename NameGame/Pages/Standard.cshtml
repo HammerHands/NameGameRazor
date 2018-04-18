@@ -5,6 +5,7 @@
 }
 <script src="~/lib/jquery/dist/jquery.js"></script>
 <script src="~/js/keyShortcuts.min.js"></script>
+<script src="~/js/sessionStart.min.js"></script>
 <script>
     function guess(index) {
         if (index == @Model.StandardQuestion.CorrectIndex) {
@@ -36,13 +37,6 @@
         }
         $('#streak').html('Streak = ' + sessionStorage.numCorrect);
     }
-
-    $(document).ready(function () {
-        if (!sessionStorage.numCorrect) {
-            sessionStorage.numCorrect = 0;
-        }
-        $('#streak').html('Streak = ' + sessionStorage.numCorrect);
-    });
 </script>
 
 <h2>Name Game - Standard</h2>

@@ -6,11 +6,13 @@
 }
 <script src="~/lib/jquery/dist/jquery.js"></script>
 <script src="~/js/keyShortcuts.min.js"></script>
+<script src="~/js/sessionStart.min.js"></script>
 <script>
     function guess(index) {
         if (index == @Model.StandardQuestion.CorrectIndex) {
             $('#correctName').html('@Model.StandardQuestion.CorrectProfile.FullName');
             $('#status' + index).attr('src', '/images/correct.png');
+            sessionStorage.numCorrect++;
         }
         else {
             switch (index) {
@@ -31,11 +33,14 @@
                     break;
             }
             $('#status' + index).attr('src', '/images/incorrect.png');
+            sessionStorage.numCorrect = 0;
         }
+        $('#streak').html('Streak = ' + sessionStorage.numCorrect);
     }
 </script>
 
 <h2>Name Game - Reverse</h2>
+<p id="streak"></p>
 
 <div class="container">
     <div class="row">
