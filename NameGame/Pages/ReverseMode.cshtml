@@ -9,32 +9,28 @@
 <script>
     function guess(index) {
         if (index == @Model.StandardQuestion.CorrectIndex) {
-            document.getElementById("correctName").innerHTML = "@Model.StandardQuestion.correctProfile.FullName";
-            document.getElementById("status" + index).src = "/images/correct.png";
+            $('#correctName').html('@Model.StandardQuestion.CorrectProfile.FullName');
+            $('#status' + index).attr('src', '/images/correct.png');
         }
         else {
             switch (index) {
                 case 0:
-                    document.getElementById("profile" + index).src = "@Model.StandardQuestion.DisplayedProfiles[0].Headshot.Url";
-                    document.getElementById("status" + index).src = "/images/incorrect.png";
+                    $('#profile' + index).attr('src', '@Model.StandardQuestion.DisplayedProfiles[0].Headshot.Url');
                     break;
                 case 1:
-                    document.getElementById("profile" + index).src = "@Model.StandardQuestion.DisplayedProfiles[1].Headshot.Url";
-                    document.getElementById("status" + index).src = "/images/incorrect.png";
+                    $('#profile' + index).attr('src', '@Model.StandardQuestion.DisplayedProfiles[1].Headshot.Url');
                     break;
                 case 2:
-                    document.getElementById("profile" + index).src = "@Model.StandardQuestion.DisplayedProfiles[2].Headshot.Url";
-                    document.getElementById("status" + index).src = "/images/incorrect.png";
+                    $('#profile' + index).attr('src', '@Model.StandardQuestion.DisplayedProfiles[2].Headshot.Url');
                     break;
                 case 3:
-                    document.getElementById("profile" + index).src = "@Model.StandardQuestion.DisplayedProfiles[3].Headshot.Url";
-                    document.getElementById("status" + index).src = "/images/incorrect.png";
+                    $('#profile' + index).attr('src', '@Model.StandardQuestion.DisplayedProfiles[3].Headshot.Url');
                     break;
                 case 4:
-                    document.getElementById("profile" + index).src = "@Model.StandardQuestion.DisplayedProfiles[4].Headshot.Url";
-                    document.getElementById("status" + index).src = "/images/incorrect.png";
+                    $('#profile' + index).attr('src', '@Model.StandardQuestion.DisplayedProfiles[4].Headshot.Url');
                     break;
             }
+            $('#status' + index).attr('src', '/images/incorrect.png');
         }
     }
 </script>
@@ -45,42 +41,21 @@
     <div class="row">
         <div class="col-md-12 center-block">
             <h3 id="correctName" class="text-center"></h3>
-            <img src="@Model.StandardQuestion.correctProfile.Headshot.Url" id="ProfilePicToMatch" class="img-responsive center-block"/>
+            <img src="@Model.StandardQuestion.CorrectProfile.Headshot.Url" id="ProfilePicToMatch" class="img-responsive center-block" style="max-height:350px;max-width:350px;"/>
         </div>
     </div>
     <br />
     <div class="row">
         <div class="col-md-offset-1" />
-        <div class="col-sm-2">
-            <h5 style="text-align:center;">1</h5>
-            <button class="btn btn-primary" onclick="guess(0)" id="option0">@Model.StandardQuestion.DisplayedProfiles[0].FullName</button>
-            <img src="" id="profile0" class="img-responsive" />
-            <img src="" id="status0" class="img-responsive" />
-        </div>
-        <div class="col-sm-2">
-            <h5 style="text-align:center;">2</h5>
-            <button class="btn btn-primary" onclick="guess(1)" id="option1">@Model.StandardQuestion.DisplayedProfiles[1].FullName</button>
-            <img src="" id="profile1" class="img-responsive" />
-            <img src="" id="status1" class="img-responsive" />
-        </div>
-        <div class="col-sm-2">
-            <h5 style="text-align:center;">3</h5>
-            <button class="btn btn-primary" onclick="guess(2)" id="option2">@Model.StandardQuestion.DisplayedProfiles[2].FullName</button>
-            <img src="" id="profile2" class="img-responsive" />
-            <img src="" id="status2" class="img-responsive" />
-        </div>
-        <div class="col-sm-2">
-            <h5 style="text-align:center;">4</h5>
-            <button class="btn btn-primary" onclick="guess(3)" id="option3">@Model.StandardQuestion.DisplayedProfiles[3].FullName</button>
-            <img src="" id="profile3" class="img-responsive" />
-            <img src="" id="status3" class="img-responsive" />
-        </div>
-        <div class="col-sm-2">
-            <h5 style="text-align:center;">5</h5>
-            <button class="btn btn-primary" onclick="guess(4)" id="option4">@Model.StandardQuestion.DisplayedProfiles[4].FullName</button>
-            <img src="" id="profile4" class="img-responsive" />
-            <img src="" id="status4" class="img-responsive" />
-        </div>
+        @for (int i = 0; i < Model.StandardQuestion.DisplayedProfiles.Length; i++)
+        {
+            <div class="col-sm-2">
+                <h5 style="text-align:center;">@(i+1)</h5>
+                <button class="btn btn-primary center-block" onclick="guess(@i)" id="option0">@Model.StandardQuestion.DisplayedProfiles[i].FullName</button>
+                <img src="" id="profile@(i)" class="img-responsive center-block" />
+                <img src="" id="status@(i)" class="img-responsive center-block" />
+            </div>
+        }
     </div>
 </div>
 

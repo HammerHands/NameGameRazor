@@ -15,7 +15,15 @@ namespace NameGame.Pages
         public async Task OnGetAsync()
         {
             StandardQuestion = new Question();
-            await StandardQuestion.CreateQuestion("standard");
+
+            try
+            {
+                await StandardQuestion.CreateQuestion(Question.Type.Standard);
+            }
+            catch(InvalidOperationException)
+            {
+                RedirectToPage("./Error");
+            }
         }
     }
 }

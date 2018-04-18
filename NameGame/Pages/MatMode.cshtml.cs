@@ -16,7 +16,16 @@ namespace NameGame.Pages
         public async Task OnGetAsync()
         {
             MatQuestion = new Question();
-            await MatQuestion.CreateQuestion("Mat");
+
+            try
+            {
+                await MatQuestion.CreateQuestion(Question.Type.Mat);
+            }
+            catch(InvalidOperationException)
+            {
+                RedirectToPage("./Error");
+            }
+            
         }
     }
 }

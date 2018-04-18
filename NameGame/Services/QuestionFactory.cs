@@ -8,17 +8,23 @@ namespace NameGame.Services
 {
     public static class QuestionFactory
     {
-        public static async Task CreateQuestion(this Question question, string questionType)
+        public static async Task CreateQuestion(this Question question, Question.Type questionType)
         {
             NameGameService gameService = new NameGameService();
             Profile[] allProfiles = await gameService.GetProfiles();
+
+            //Check to see if null, less than 5 returned, or less than five valid headshots
+            if (allProfiles == null || allProfiles.Length < 5 || allProfiles.Where(p => p.Headshot.Url != null).Count() < 5)
+            {
+                throw new InvalidOperationException();
+            }
 
             question.DisplayedProfiles = new Profile[5];
             Random numGenerator = new Random();
             Profile toAdd;
             int curr = 0;
             //Filter profiles out of Displayed based on question type
-            if(questionType.Equals("standard") || questionType.Equals("reverse"))
+            if(questionType == Question.Type.Standard || questionType == Question.Type.Reverse)
             {
                 while (curr != 5)
                 {
@@ -34,10 +40,15 @@ namespace NameGame.Services
                 }
                 //Randomly Select Correct Profile
                 question.CorrectIndex = numGenerator.Next(question.DisplayedProfiles.Length);
-                question.correctProfile = question.DisplayedProfiles[question.CorrectIndex];
+                question.CorrectProfile = question.DisplayedProfiles[question.CorrectIndex];
             }
-            else if(questionType.Equals("Team"))
+            else if(questionType == Question.Type.Team)
             {
+                //Check to see if enough profiles with Job Titles for a question
+                if(allProfiles.Where(p => p.JobTitle != null).Count() < 5)
+                {
+                    throw new InvalidOperationException();
+                }
                 while (curr != 5)
                 {
                     toAdd = allProfiles[numGenerator.Next(allProfiles.Length)];
@@ -52,10 +63,15 @@ namespace NameGame.Services
                 }
                 //Randomly Select Correct Profile
                 question.CorrectIndex = numGenerator.Next(question.DisplayedProfiles.Length);
-                question.correctProfile = question.DisplayedProfiles[question.CorrectIndex];
+                question.CorrectProfile = question.DisplayedProfiles[question.CorrectIndex];
             }
-            else if(questionType.Equals("Mat"))
+            else if(questionType == Question.Type.Mat)
             {
+                //Check to see if enough Mat(t)s for a question
+                if(allProfiles.Where(p => p.FullName.StartsWith("Mat")).Count() < 5)
+                {
+                    throw new InvalidOperationException();
+                }
                 while (curr != 5)
                 {
                     toAdd = allProfiles[numGenerator.Next(allProfiles.Length)];
@@ -70,7 +86,7 @@ namespace NameGame.Services
                 }
                 //Randomly Select Correct Profile
                 question.CorrectIndex = numGenerator.Next(question.DisplayedProfiles.Length);
-                question.correctProfile = question.DisplayedProfiles[question.CorrectIndex];
+                question.CorrectProfile = question.DisplayedProfiles[question.CorrectIndex];
             }
         }
     }

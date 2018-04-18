@@ -9,33 +9,29 @@
 <script>
     function guess(index) {
         if (index == @Model.StandardQuestion.CorrectIndex) {
-            document.getElementById("option" + index + "Text").innerHTML = "@Model.StandardQuestion.correctProfile.FullName";
-            document.getElementById("status" + index).src = "/images/correct.png";
+            $('#option' + index + 'Text').html('@Model.StandardQuestion.CorrectProfile.FullName');
+            $('#status' + index).attr('src', '/images/correct.png');
         }
         else {
             //Can't pass javascript variables to C# injection so a switch is needed to determine position to show name.
             switch (index) {
                 case 0:
-                    document.getElementById("option" + index + "Text").innerHTML = "@Model.StandardQuestion.DisplayedProfiles[0].FullName";
-                    document.getElementById("status" + index).src = "/images/incorrect.png";
+                    $('#option' + index + 'Text').html('@Model.StandardQuestion.DisplayedProfiles[0].FullName');
                     break;
                 case 1:
-                    document.getElementById("option" + index + "Text").innerHTML = "@Model.StandardQuestion.DisplayedProfiles[1].FullName";
-                    document.getElementById("status" + index).src = "/images/incorrect.png";
+                    $('#option' + index + 'Text').html('@Model.StandardQuestion.DisplayedProfiles[1].FullName');
                     break;
                 case 2:
-                    document.getElementById("option" + index + "Text").innerHTML = "@Model.StandardQuestion.DisplayedProfiles[2].FullName";
-                    document.getElementById("status" + index).src = "/images/incorrect.png";
+                    $('#option' + index + 'Text').html('@Model.StandardQuestion.DisplayedProfiles[2].FullName');
                     break;
                 case 3:
-                    document.getElementById("option" + index + "Text").innerHTML = "@Model.StandardQuestion.DisplayedProfiles[3].FullName";
-                    document.getElementById("status" + index).src = "/images/incorrect.png";
+                    $('#option' + index + 'Text').html('@Model.StandardQuestion.DisplayedProfiles[3].FullName');
                     break;
                 case 4:
-                    document.getElementById("option" + index + "Text").innerHTML = "@Model.StandardQuestion.DisplayedProfiles[4].FullName";
-                    document.getElementById("status" + index).src = "/images/incorrect.png";
+                    $('#option' + index + 'Text').html('@Model.StandardQuestion.DisplayedProfiles[4].FullName');
                     break;
             }
+            $('#status' + index).attr('src', '/images/incorrect.png');
         }
     }
 </script>
@@ -45,41 +41,20 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h3 id="matchThisName" style="text-align:center;">@Model.StandardQuestion.correctProfile.FullName </h3>
+            <h3 id="matchThisName" style="text-align:center;">@Model.StandardQuestion.CorrectProfile.FullName </h3>
         </div>
     </div>
     <div class="row">
         <div class="col-md-offset-1" />
-        <div class="col-sm-2">
-            <h5 style="text-align:center;">1</h5>
-            <img src="@Model.StandardQuestion.DisplayedProfiles[0].Headshot.Url" id="option0" onclick="guess(0)" class="img-responsive" />
-            <p id="option0Text"></p>
-            <img src="" id="status0" class="img-responsive" />
-        </div>
-        <div class="col-sm-2">
-            <h5 style="text-align:center;">2</h5>
-            <img src="@Model.StandardQuestion.DisplayedProfiles[1].Headshot.Url" id="option1" onclick="guess(1)" class="img-responsive" />
-            <p id="option1Text"></p>
-            <img src="" id="status1" class="img-responsive" />
-        </div>
-        <div class="col-sm-2">
-            <h5 style="text-align:center;">3</h5>
-            <img src="@Model.StandardQuestion.DisplayedProfiles[2].Headshot.Url" id="option2" onclick="guess(2)" class="img-responsive" />
-            <p id="option2Text"></p>
-            <img src="" id="status2" class="img-responsive" />
-        </div>
-        <div class="col-sm-2">
-            <h5 style="text-align:center;">4</h5>
-            <img src="@Model.StandardQuestion.DisplayedProfiles[3].Headshot.Url" id="option3" onclick="guess(3)" class="img-responsive" />
-            <p id="option3Text"></p>
-            <img src="" id="status3" class="img-responsive" />
-        </div>
-        <div class="col-sm-2">
-            <h5 style="text-align:center;">5</h5>
-            <img src="@Model.StandardQuestion.DisplayedProfiles[4].Headshot.Url" id="option4" onclick="guess(4)" class="img-responsive" />
-            <p id="option4Text"></p>
-            <img src="" id="status4" class="img-responsive" />
-        </div>
+        @for (int i = 0; i < Model.StandardQuestion.DisplayedProfiles.Length; i++)
+        {
+            <div class="col-sm-2">
+            <h5 style="text-align:center;">@(i+1)</h5>
+            <img src="@Model.StandardQuestion.DisplayedProfiles[i].Headshot.Url" id="option@(i)" onclick="guess(@(i))" class="img-responsive center-block" />
+            <p id="option@(i)Text"></p>
+            <img src="" id="status@(i)" class="img-responsive center-block" />
+            </div>
+        }
     </div>
 </div>
 

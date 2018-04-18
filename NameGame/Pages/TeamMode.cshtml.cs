@@ -16,7 +16,14 @@ namespace NameGame.Pages
         public async Task OnGetAsync()
         {
             TeamQuestion = new Question();
-            await TeamQuestion.CreateQuestion("Team");
+            try
+            {
+                await TeamQuestion.CreateQuestion(Question.Type.Team);
+            }
+            catch(InvalidOperationException)
+            {
+                RedirectToPage("./Error");
+            }
         }
     }
 }

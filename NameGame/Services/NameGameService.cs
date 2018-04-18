@@ -23,16 +23,9 @@ namespace NameGame.Services
             HttpResponseMessage response = await client.GetAsync(client.BaseAddress);
             if(response.IsSuccessStatusCode)
             {
-                // parsing
+                // convert IEnumerable to Array
                 var dataProfiles = response.Content.ReadAsAsync<IEnumerable<Profile>>().Result;
-                Profile[] allProfiles = new Profile[dataProfiles.Count()];
-                int count = 0;
-                foreach(Profile p in dataProfiles)
-                {
-                    allProfiles[count] = p;
-                    count++;
-                }
-                return allProfiles;
+                return dataProfiles.ToArray();
             }
             return null;
         }
