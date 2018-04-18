@@ -1,26 +1,20 @@
 # NameGameRazor
 
-# Thursday:
-Read problem and begain brainstorming a few ways to go about solving the problem:
-1. Factory - Create a Question Producer for each type of question.
-2. Module - Create a page and group functions of Games together
+# Standard Mode
+ * Displays Five Faces and a name. When an image is clicked on it will display whether that is incorrect or correct. To get a new question    click the Standard in the nav menu.
 
-# Friday:
-1. Begin setup of Razor Pages - Name Game
-2. Create Reading of api
+# Team Mode
+ * Same as Standard Mode but only shows profiles whose job title is not null. This indicates that they are current employees.
 
-# Saturday:
-1. Begin creation of Standard Page
-2. First Read of Code Review and Notes on Code
-
-# Sunday:
-1. Finish Startup Page and Test(Exploratory)
-2. Research Partial Views using Razor Pages
-
-# Monday: 
-1. Attempt Abstracting questions into a factory.
-2. Using Logic of Standard Page create ReverseMode, TeamMode, and Mat(t) Mode
-3. While creating these it occurred to me that ReverseMode and StandardMode could use the same logic just different views because there      was no filtering being done on the data.
-3.1 Looked into possible ways using partials and abstracting logic, no luck after attempts.
-
-4. Finish and record thoughts on code review.
+# Mat(t) Mode
+ * Same as Standard Mode but only shows names that start with Mat.
+ 
+# Reverse
+ * Displays a face and five names. When a name is clicked on it will display whether that is incorrect or correct.
+ 
+# Streak Tracking
+ * Score Tracking is implmented to track across all lists. When an question is answered correctly the score increases by 1. If answered incorrectly the value is reset to 0. If you navigate to another page the score remains the same. 
+ E.g. Mat(t) question -> correct -> score = 1. Standard Question -> score = 1 -> correct -> score = 2. Team Question -> score = 2 -> correct -> score = 3. Reverse Question -> score = 3 -> incorrect -> score = 0. 
+ 
+# Keyboard Shortcuts
+ * There are numbers displayed above each name. When the corresponding key is pressed on the keyboard the associated answer is guessed.
