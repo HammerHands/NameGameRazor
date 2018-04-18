@@ -9,40 +9,45 @@
 <script src="~/js/sessionStart.min.js"></script>
 <script>
     function guess(index) {
-        if (index == @Model.TeamQuestion.CorrectIndex) {
-            $('#option' + index + 'Text').html('@Model.TeamQuestion.CorrectProfile.FullName');
-            $('#jobTitle' + index).html('@Model.TeamQuestion.CorrectProfile.JobTitle');
-            $('#status' + index).attr('src', '/images/correct.png');
-            sessionStorage.numCorrect++;
+        if ($('#option' + index + 'Text').text() !== '') {
+            return;
         }
         else {
-            //Can't pass javascript variables to C# injection so a switch is needed to determine position to show name.
-            switch (index) {
-                case 0:
-                    $('#option' + index + 'Text').html('@Model.TeamQuestion.DisplayedProfiles[0].FullName');
-                    $('#jobTitle' + index).html('@Model.TeamQuestion.DisplayedProfiles[0].JobTitle');
-                    break;
-                case 1:
-                    $('#option' + index + 'Text').html('@Model.TeamQuestion.DisplayedProfiles[1].FullName');
-                    $('#jobTitle' + index).html('@Model.TeamQuestion.DisplayedProfiles[1].JobTitle');
-                    break;
-                case 2:
-                    $('#option' + index + 'Text').html('@Model.TeamQuestion.DisplayedProfiles[2].FullName');
-                    $('#jobTitle' + index).html('@Model.TeamQuestion.DisplayedProfiles[2].JobTitle');
-                    break;
-                case 3:
-                    $('#option' + index + 'Text').html('@Model.TeamQuestion.DisplayedProfiles[3].FullName');
-                    $('#jobTitle' + index).html('@Model.TeamQuestion.DisplayedProfiles[3].JobTitle');
-                    break;
-                case 4:
-                    $('#option' + index + 'Text').html('@Model.TeamQuestion.DisplayedProfiles[4].FullName');
-                    $('#jobTitle' + index).html('@Model.TeamQuestion.DisplayedProfiles[4].JobTitle');
-                    break;
+            if (index == @Model.TeamQuestion.CorrectIndex) {
+                $('#option' + index + 'Text').html('@Model.TeamQuestion.CorrectProfile.FullName');
+                $('#jobTitle' + index).html('@Model.TeamQuestion.CorrectProfile.JobTitle');
+                $('#status' + index).attr('src', '/images/correct.png');
+                sessionStorage.numCorrect++;
+            }   
+            else {
+                //Can't pass javascript variables to C# injection so a switch is needed to determine position to show name.
+                switch (index) {
+                    case 0:
+                        $('#option' + index + 'Text').html('@Model.TeamQuestion.DisplayedProfiles[0].FullName');
+                        $('#jobTitle' + index).html('@Model.TeamQuestion.DisplayedProfiles[0].JobTitle');
+                        break;
+                    case 1:
+                        $('#option' + index + 'Text').html('@Model.TeamQuestion.DisplayedProfiles[1].FullName');
+                        $('#jobTitle' + index).html('@Model.TeamQuestion.DisplayedProfiles[1].JobTitle');
+                        break;
+                    case 2:
+                        $('#option' + index + 'Text').html('@Model.TeamQuestion.DisplayedProfiles[2].FullName');
+                        $('#jobTitle' + index).html('@Model.TeamQuestion.DisplayedProfiles[2].JobTitle');
+                        break;
+                    case 3:
+                        $('#option' + index + 'Text').html('@Model.TeamQuestion.DisplayedProfiles[3].FullName');
+                        $('#jobTitle' + index).html('@Model.TeamQuestion.DisplayedProfiles[3].JobTitle');
+                        break;
+                    case 4:
+                        $('#option' + index + 'Text').html('@Model.TeamQuestion.DisplayedProfiles[4].FullName');
+                        $('#jobTitle' + index).html('@Model.TeamQuestion.DisplayedProfiles[4].JobTitle');
+                        break;
+                }
+                $('#status' + index).attr('src', '/images/incorrect.png');
+                sessionStorage.numCorrect = 0;
             }
-            $('#status' + index).attr('src', '/images/incorrect.png');
-            sessionStorage.numCorrect = 0;
+            $('#streak').html('Streak = ' + sessionStorage.numCorrect);
         }
-        $('#streak').html('Streak = ' + sessionStorage.numCorrect);
     }
 </script>
 

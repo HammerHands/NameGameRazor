@@ -9,33 +9,38 @@
 <script src="~/js/sessionStart.min.js"></script>
 <script>
     function guess(index) {
-        if (index == @Model.StandardQuestion.CorrectIndex) {
-            $('#correctName').html('@Model.StandardQuestion.CorrectProfile.FullName');
-            $('#status' + index).attr('src', '/images/correct.png');
-            sessionStorage.numCorrect++;
+        if ($('#status' + index).attr('src') !== '') {
+            return;
         }
         else {
-            switch (index) {
-                case 0:
-                    $('#profile' + index).attr('src', '@Model.StandardQuestion.DisplayedProfiles[0].Headshot.Url');
-                    break;
-                case 1:
-                    $('#profile' + index).attr('src', '@Model.StandardQuestion.DisplayedProfiles[1].Headshot.Url');
-                    break;
-                case 2:
-                    $('#profile' + index).attr('src', '@Model.StandardQuestion.DisplayedProfiles[2].Headshot.Url');
-                    break;
-                case 3:
-                    $('#profile' + index).attr('src', '@Model.StandardQuestion.DisplayedProfiles[3].Headshot.Url');
-                    break;
-                case 4:
-                    $('#profile' + index).attr('src', '@Model.StandardQuestion.DisplayedProfiles[4].Headshot.Url');
-                    break;
+            if (index == @Model.StandardQuestion.CorrectIndex) {
+                $('#correctName').html('@Model.StandardQuestion.CorrectProfile.FullName');
+                $('#status' + index).attr('src', '/images/correct.png');
+                sessionStorage.numCorrect++;
             }
-            $('#status' + index).attr('src', '/images/incorrect.png');
-            sessionStorage.numCorrect = 0;
+            else {
+                switch (index) {
+                    case 0:
+                        $('#profile' + index).attr('src', '@Model.StandardQuestion.DisplayedProfiles[0].Headshot.Url');
+                        break;
+                    case 1:
+                        $('#profile' + index).attr('src', '@Model.StandardQuestion.DisplayedProfiles[1].Headshot.Url');
+                        break;
+                    case 2:
+                        $('#profile' + index).attr('src', '@Model.StandardQuestion.DisplayedProfiles[2].Headshot.Url');
+                        break;
+                    case 3:
+                        $('#profile' + index).attr('src', '@Model.StandardQuestion.DisplayedProfiles[3].Headshot.Url');
+                        break;
+                    case 4:
+                        $('#profile' + index).attr('src', '@Model.StandardQuestion.DisplayedProfiles[4].Headshot.Url');
+                        break;
+                }
+                $('#status' + index).attr('src', '/images/incorrect.png');
+                sessionStorage.numCorrect = 0;
+            }
+            $('#streak').html('Streak = ' + sessionStorage.numCorrect);
         }
-        $('#streak').html('Streak = ' + sessionStorage.numCorrect);
     }
 </script>
 
