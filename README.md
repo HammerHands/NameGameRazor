@@ -13,8 +13,8 @@
  * Displays a face and five names. When a name is clicked on it will display whether that is incorrect or correct.
  
 ## Streak Tracking
- * Score Tracking is implmented to track across all lists. When an question is answered correctly the score increases by 1. If answered incorrectly the value is reset to 0. If you navigate to another page the score remains the same. 
- * E.g. Mat(t) question -> correct -> score = 1; Standard Question -> score = 1 -> correct -> score = 2; Team Question -> score = 2 -> correct -> score = 3; Reverse Question -> score = 3 -> incorrect -> score = 0. 
+ * Streak Tracking is implemented to track across all lists. When an question is answered correctly the streak increases by 1. If answered incorrectly the value is reset to 0. If you navigate to another page the score remains the same. 
+ * E.g. Mat(t) question -> correct -> streak = 1; Standard Question -> streak = 1 -> correct -> streak = 2; Team Question -> streak = 2 -> correct -> streak = 3; Reverse Question -> streak = 3 -> incorrect -> streak = 0. 
  
 ## Keyboard Shortcuts
  * There are numbers displayed above each name. When the corresponding key is pressed on the keyboard the associated answer is guessed.
