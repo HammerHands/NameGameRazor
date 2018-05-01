@@ -1,0 +1,14 @@
+﻿<Properties StartupConfiguration="{9C5BEB5D-0811-4B10-8C0D-F153F7B1AC29}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="NameGame/Pages/MatMode.cshtml">
+    <Files>
+      <File FileName="NameGame/Pages/MatMode.cshtml" Line="54" Column="32" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.NameGame PreferredExecutionTarget="MonoDevelop.Default" />
+</Properties>
